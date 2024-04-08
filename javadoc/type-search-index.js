@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.example.matkailusovellus_harjoitustyo","l":"Matkailusovellus"},{"p":"com.example.matkailusovellus_harjoitustyo","l":"MatkailusovellusOhjelma"},{"p":"com.example.matkailusovellus_harjoitustyo","l":"Matkakohteet"}];updateSearchResults();

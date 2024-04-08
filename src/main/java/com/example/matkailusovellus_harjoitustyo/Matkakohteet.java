@@ -28,10 +28,10 @@ public class Matkakohteet {
 
     /**
      * Alustaja, joka luo uuden matkakohteen
-     * @param nimi
-     * @param sijainti
-     * @param kuvaus
-     * @param nahtavyydet
+     * @param nimi String matkakohteen nimi
+     * @param sijainti String matkakohteen sijainti
+     * @param kuvaus String matkakohteen kuvaus
+     * @param nahtavyydet String nähtävyydet
      */
     public Matkakohteet(String nimi, String sijainti, String kuvaus, String nahtavyydet) {
         this.nimi = nimi;

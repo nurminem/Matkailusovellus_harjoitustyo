@@ -91,8 +91,8 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Ohjelmaikunnan käynnistys
-     * @param primarystage
-     * @throws IOException
+     * @param primarystage Stage primarystage pääikkuna
+     * @throws IOException jos lataaminen epäonnistuu
      */
     public void start(Stage primarystage) throws IOException {
 
@@ -122,9 +122,9 @@ public class MatkailusovellusOhjelma extends Application {
         matkakohteet.add(new Matkakohteet("Hongkong", "Kiina, Aasia", "Hongkong on yksi maailman liberaaleimmista talouksista ja tärkeimmistä kansainvälisen talouden keskuksista. Hongkongin elintason nousu kuului maailman nopeimpiin. Hongkongilla on yksi maailman korkeimpia elinajanodotteita.", "\nHonk Kong Disneyland\nVictoria Peak\nTian Tan Buddha - patsas\nHong Kong Science Museum"));
         matkakohteet.add(new Matkakohteet("Lontoo", "Englanti, Eurooppa", "Lontoo on Yhdistyneen kuningaskunnan ja Englannin pääkaupunki. Suur-Lontoon pinta-ala on 1 572 neliökilometriä. Lontooksi käsitetään yleensä niin sanottu Suur-Lontoon alue, joka koostuu 32 kaupunkipiiristä sekä Lontoon Citystä", "\nBig Ben - kellotorni\nBuckinghamin palatsi\nLondon Eye - maailmanpyörä\nBritish Museum"));
         matkakohteet.add(new Matkakohteet("Pariisi", "Ranska, Eurooppa", "Pariisi on Ranskan ja Île-de-Francen alueen pääkaupunki. Se on yksi maailman suosituimmista turistikaupungeista. Suur-Pariisiin saapuu yli 45 miljoonaa turistia vuodessa. Kaupunkia pidetään yhtenä maailman tärkeimmistä kulttuurin ja muodin keskuksista.", "\nEiffel-torni\nLouvre - museo\nNotre-Damen katedraali\nRiemukaari"));
-        matkakohteet.add(new Matkakohteet("Rooma", "Italia, Eurooppa", "Rooma on Italian pääkaupunki ja väkiluvultaan Italian suurin kaupunki. Se sijaitsee lähellä Italian länsirannikkoa, Tiberjoen varrella. Rooma, joka tunnetaan myös ”ikuisena kaupunkina”, on lähes 3 000 vuoden ikäinen.", "\nColosseum\nVatikaani\nTrevin suihkulähde\nForum Romanum\nPantheon - katollinen kirkko"));
+        matkakohteet.add(new Matkakohteet("Rooma", "Italia, Eurooppa", "Rooma on Italian pääkaupunki ja väkiluvultaan Italian suurin kaupunki. Se sijaitsee lähellä Italian länsirannikkoa, Tiberjoen varrella. Rooma, joka tunnetaan myös ikuisena kaupunkina, on lähes 3 000 vuoden ikäinen.", "\nColosseum\nVatikaani\nTrevin suihkulähde\nForum Romanum\nPantheon - katollinen kirkko"));
         matkakohteet.add(new Matkakohteet("Singapore", "Singaporen tasavalta, Aasia", "Singapore on yksi maailman tiheimmin asutuista kaupungeista; sen pääsaarella asuu yli viisi miljoonaa ihmistä. Singapore on noussut 2000-luvulla maailman johtavaksi älykaupungiksi.", "\nGardens by the Bay - puutarha\nRaffles-hotelli\nMerlion Park\nSingapore Flyer - maailmanpyörä\nSingaporen kansallismuseo"));
-        matkakohteet.add(new Matkakohteet("Tokio", "Japani, Aasia", "Tokio on Japanin pääkaupunki. Tokio on Japanin politiikan, talouden ja kulttuurin keskuksena sekä Japanin keisarin asuinpaikkana. Japanin asukasluku on noin 14 miljoonaa.", "\nHarajuku - kaupunginosa\nKeisarillinen palatsi\nFuji-vuori\nHiroshiman rauhanpuisto\nSensō-ji – Vanhin temppeli Tokiossa"));
+        matkakohteet.add(new Matkakohteet("Tokio", "Japani, Aasia", "Tokio on Japanin pääkaupunki. Tokio on Japanin politiikan, talouden ja kulttuurin keskuksena sekä Japanin keisarin asuinpaikkana. Japanin asukasluku on noin 14 miljoonaa.", "\nHarajuku - kaupunginosa\nKeisarillinen palatsi\nFuji-vuori\nHiroshiman rauhanpuisto\nSenso-ji– Vanhin temppeli Tokiossa"));
     }
 
     /**
@@ -482,8 +482,8 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Päivittää matkakohteen tiedot TextFlow-olioon valitun kohteen perusteella.
-     * @param tiedot
-     * @param valittuKohde
+     * @param tiedot TextFlow tiedot
+     * @param valittuKohde Matkakohteet valittukohde
      */
     private void paivitaMatkakohdeTiedot(TextFlow tiedot, Matkakohteet valittuKohde) {
         tiedot.getChildren().clear();
@@ -508,7 +508,7 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Hakee matkakohteen nimen perusteella ja palauttaa sen
-     * @param nimi
+     * @param nimi String nimi
      * @return kohde, jos kohdetta ei löydy palautetaan null
      */
     private Matkakohteet haeMatkakohdeNimella(String nimi) {
@@ -568,7 +568,7 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Näyttää muiston sisällön erillisessä ikkunassa
-     * @param muisto
+     * @param muisto String muisto
      */
     private void naytaMuistonSisalto(String muisto) {
         Stage muistonIkkuna = new Stage();
@@ -663,8 +663,8 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Tallentaa uuden matkamuiston käyttäjän matkamuistoihin
-     * @param otsikko
-     * @param muisto
+     * @param otsikko String otsikko
+     * @param muisto String muisto
      */
     private void tallennaMuisto(String otsikko, String muisto) {
         if (otsikko.isEmpty() || muisto.isEmpty()) {
@@ -683,7 +683,7 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Päivittää matkamuistojen näkymän muistotContainerin avulla.
-     * @param muistotContainer
+     * @param muistotContainer FlowPane muistot säiliö
      */
     private void paivitaMuistotNakyma(FlowPane muistotContainer) {
 
@@ -811,8 +811,8 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Tallentaa uuden matkan ja päivittää käyttäjän tulevat matkat.
-     * @param matkanNimi
-     * @param matkanPaivamaara
+     * @param matkanNimi String matkan nimi
+     * @param matkanPaivamaara LocalDate matkan päivämäärä
      */
     private void tallennaMatka(String matkanNimi, LocalDate matkanPaivamaara) {
         int paivienMaara = Matkailusovellus.palautaPaivienMaara(matkanPaivamaara, LocalDate.now());
@@ -822,7 +822,7 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Päivittää käyttäjän tulevat matkat tekstikenttään
-     * @param matkatTeksti
+     * @param matkatTeksti Vbox matkat teksti
      */
     private void paivitaMatkatTeksti(VBox matkatTeksti) {
         matkatTeksti.getChildren().clear();
@@ -848,7 +848,7 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Main-metodi, käynnistää sovelluksen
-     * @param args
+     * @param args komentorivin argumentit
      */
     public static void main(String[] args) {
         launch(args);

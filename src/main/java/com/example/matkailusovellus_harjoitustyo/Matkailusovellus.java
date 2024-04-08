@@ -57,8 +57,8 @@ public class Matkailusovellus implements Serializable {
     /**
      * Palauttaa päivien määrän kirjautumisen
      * ja matkalle lähdön päivämäärien välillä
-     * @param matkanPaivamaara
-     * @param kirjautumisenPaiva
+     * @param matkanPaivamaara LocalDate matkan päivämäärä
+     * @param kirjautumisenPaiva LocalDate kirjautumisen päivä
      * @return int paivienMaara
      */
     public static int palautaPaivienMaara(LocalDate matkanPaivamaara, LocalDate kirjautumisenPaiva){
@@ -85,7 +85,7 @@ public class Matkailusovellus implements Serializable {
 
     /**
      * Asettaa matkamuiston matkamuistot listalle
-     * @param matkamuistot
+     * @param matkamuistot String matkamuistot
      */
     public void setMatkamuistot(String matkamuistot) {
         this.matkamuistot.add(matkamuistot);
@@ -93,7 +93,7 @@ public class Matkailusovellus implements Serializable {
 
     /**
      * Tallentaa tulevat matkat listalle
-     * @param matkaTiedot
+     * @param matkaTiedot String matkatiedot
      */
     public void tallennaTulevatMatkat(String matkaTiedot) {
         tulevatMatkat.add(matkaTiedot);
