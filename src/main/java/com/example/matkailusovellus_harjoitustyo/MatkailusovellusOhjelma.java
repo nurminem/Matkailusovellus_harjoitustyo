@@ -1,6 +1,5 @@
 package com.example.matkailusovellus_harjoitustyo;
 
-
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -19,7 +18,6 @@ import javafx.util.Duration;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
-
 
 /**
  * MatkailusovellusOhjelma luokka, joka toteuttaa Matkailusovellus ja
@@ -108,12 +106,12 @@ public class MatkailusovellusOhjelma extends Application {
         primarystage.setTitle("Matkailusovellus");
         primarystage.setScene(aloitusnaytto());
         primarystage.show();
-
     }
 
     /**
      * Luo matkakohteet ja lisää ne listaan.
-     * Sisältää Matkakohteet luokan tiedot
+     * Sisältää Matkakohteet luokan tiedot:
+     * nimi, sijainti, kuvaus ja nähtävyydet.
      */
     private void luoMatkakohteet(){
         matkakohteet.add(new Matkakohteet("Amsterdam","Alankomaat, Eurooppa","Amsterdam on Alankomaiden pääkaupunki. Sen asukasluku on noin 910 000. ","\nAmsterdamin kanaalit\nAnne Frankin talo\nVan Gogh -museo\nDam-aukio"));
@@ -164,7 +162,7 @@ public class MatkailusovellusOhjelma extends Application {
     }
 
     /**
-     * Tallentaa käyttäjän tiedot käyttäjälistaan
+     * Tallentaa uusiKayttaja käyttäjän tiedot käyttäjälistaan kayttajat
      */
     public void tallennaKayttajanTiedot(){
         Matkailusovellus uusiKayttaja = new Matkailusovellus(tfkayttaja.getText());
@@ -172,8 +170,9 @@ public class MatkailusovellusOhjelma extends Application {
     }
 
     /**
-     * Tarkistaa onko tiedosto jo olemassa,
+     * Tarkistaa onko matkailuTiedosto jo olemassa,
      * jos tiedosto ei ole olemassa niin luodaan
+     * @throws RuntimeException jos uuden tiedoston luominen epäonnistuu
      */
     public void avaaTiedosto() {
         if (!matkailuTiedosto.exists()) {
@@ -181,9 +180,9 @@ public class MatkailusovellusOhjelma extends Application {
                 matkailuTiedosto.createNewFile();} catch (IOException e) {
                 throw new RuntimeException(e);}}}
 
-
     /**
-     * Metodi lueTiedot lukee tiedot ja asettaa ne käyttäjien listaan
+     * Metodi lukee tiedostosta tallennetut käyttäjätiedot ja päivittää ne
+     * matkailusovelluksen käyttäjälistalle kayttajat.
      */
     public void lueTiedot() {
         try {
@@ -233,7 +232,8 @@ public class MatkailusovellusOhjelma extends Application {
     }
 
     /**
-     * Luo aloitusnäytön ja siihen liittyvät komponentit, kuten otsikon, käyttäjänimi-kentän ja kirjautumispainikkeen.
+     * Luo aloitusnäytön ja siihen liittyvät komponentit,
+     * kuten otsikon, käyttäjänimi-kentän ja kirjautumispainikkeen.
      * @return Scene-olio
      */
     public Scene aloitusnaytto() {
@@ -276,16 +276,14 @@ public class MatkailusovellusOhjelma extends Application {
         vBox.getChildren().addAll(otsikko, paneeli, ohje, kirjauduButton);
         vBox.setAlignment(Pos.CENTER);
 
-        // Taustakuva ikkunaan
+        // Taustakuva näkymään
         Image image = new Image("file:src/main/resources/images/aloitusNakyma.png");
         BackgroundSize backgroundSize = new BackgroundSize(1.0, 1.0, true, true, false, false);
         BackgroundImage backgroundImage = new BackgroundImage(image,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,backgroundSize);
         vBox.setBackground(new Background(backgroundImage));
-
         Scene kehys = new Scene(vBox, 550, 450);
         return kehys;
     }
-
 
     /**
      * Valikkonäyttö ja siinä olevat komponentit.
@@ -468,7 +466,6 @@ public class MatkailusovellusOhjelma extends Application {
         layout.getChildren().addAll(takaisinYla, otsikko,tietoja);
         layout.setAlignment(Pos.TOP_CENTER);
         layout.setSpacing(10);
-
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
         Image image = new Image("file:src/main/resources/images/matkakohteetNakyma.png");
@@ -502,7 +499,6 @@ public class MatkailusovellusOhjelma extends Application {
         sijainti.setFill(Color.WHITE);
 
         tiedot.setStyle("-fx-background-color: rgba(0, 0, 0, 0.8); -fx-padding: 10px;");
-
         tiedot.getChildren().addAll(nimi, sijainti, kuvaus, nahtavyydet);
     }
 
@@ -537,7 +533,7 @@ public class MatkailusovellusOhjelma extends Application {
         dropShadow.setSpread(0.5);
 
         Text otsikko = new Text("Matkamuistot");
-        otsikko.setFont(Font.font("Arial", FontWeight.BOLD, 30d));
+        otsikko.setFont(Font.font("Arial", FontWeight.BOLD, 30));
         otsikko.setFill(Color.WHITE);
         otsikko.setEffect(dropShadow);
 
@@ -553,7 +549,6 @@ public class MatkailusovellusOhjelma extends Application {
         hbox.setAlignment(Pos.TOP_LEFT);
         hbox.setPadding(new Insets(10));
         hbox.setSpacing(10);
-
         layout.getChildren().addAll(hbox,otsikko, lisaaMuistoButton, muistotContainer);
         // Taustakuva
         Image image = new Image("file:src/main/resources/images/matkamuistotNakyma.jpeg");
@@ -562,12 +557,12 @@ public class MatkailusovellusOhjelma extends Application {
         layout.setBackground(new Background(backgroundImage));
 
         Scene scene = new Scene(layout, 550, 450);
-
         return scene;
     }
 
     /**
-     * Näyttää muiston sisällön erillisessä ikkunassa
+     * Näyttää muiston sisällön erillisessä ikkunassa.
+     * Ikkunassa myös poista -painike, jolla muiston voi poistaa.
      * @param muisto String muisto
      */
     private void naytaMuistonSisalto(String muisto) {
@@ -592,9 +587,7 @@ public class MatkailusovellusOhjelma extends Application {
         sisaltoTeksti.setFont(Font.font("Arial", 16));
         sisaltoTeksti.setFill(Color.BLACK);
         sisaltoTeksti.setTextAlignment(TextAlignment.CENTER);
-
         TextFlow textFlow = new TextFlow(sisaltoTeksti);
-        textFlow.setMaxWidth(350);
         textFlow.setTextAlignment(TextAlignment.CENTER);
 
         // Poista muisto listalta
@@ -626,10 +619,9 @@ public class MatkailusovellusOhjelma extends Application {
         muistonIkkuna.show();
     }
 
-
-
     /**
      * Avaa ikkunan uuden matkamuiston lisäämistä varten.
+     * Sisältää kaikki ikkunan komponentit.
      */
     private void lisaaMuistoIkkuna() {
         Stage lisaaMuistoStage = new Stage();
@@ -655,7 +647,6 @@ public class MatkailusovellusOhjelma extends Application {
         });
 
         layout.getChildren().addAll(otsikkoInput, muistoInput, tallennaButton);
-
         Scene scene = new Scene(layout, 300, 200);
         lisaaMuistoStage.setScene(scene);
         lisaaMuistoStage.show();
@@ -673,9 +664,9 @@ public class MatkailusovellusOhjelma extends Application {
             alert.setTitle("Virhe");
             alert.setHeaderText(null);
             alert.setContentText("Otsikko tai muisto ei voi olla tyhjä!");
-            alert.showAndWait(); // Näytetään virheilmoitus ja odotetaan, että se suljetaan
+            alert.showAndWait();
         } else {
-            // Tallennetaan muisto, jos otsikko ja muisto eivät ole tyhjiä
+            // Tallennetaan muisto
             uusiKayttaja.setMatkamuistot(otsikko + ": " + muisto);
         }
 
@@ -701,11 +692,9 @@ public class MatkailusovellusOhjelma extends Application {
             String otsikko = muisto.split(":")[0];
 
             Hyperlink otsikkoLinkki = new Hyperlink(otsikko);
-
             otsikkoLinkki.setFont(Font.font("Arial", FontWeight.BOLD, 15));
             otsikkoLinkki.setTextFill(Color.WHITE);
             otsikkoLinkki.setEffect(dropShadow);
-
             otsikkoLinkki.setOnAction(event -> {
                 naytaMuistonSisalto(muisto);
             });
@@ -715,6 +704,7 @@ public class MatkailusovellusOhjelma extends Application {
 
     /**
      * Tulevat matkat -näkymä ja sen komponentit.
+     * Näkymässä voi lisätä uuden tulevan matkan näkyviin.
      * @return Scene-olio
      */
     private Scene tulevatMatkatNakyma(){
@@ -828,9 +818,9 @@ public class MatkailusovellusOhjelma extends Application {
         matkatTeksti.getChildren().clear();
 
         List<String> tulevatMatkat = uusiKayttaja.getTulevatMatkat();
+        // Järjestää tulevat matkat päivien määrän mukaan
         Collections.sort(tulevatMatkat, new Comparator<String>() {
             public int compare(String matka1, String matka2) {
-                // Erotetaan päivämäärä merkkijonosta ja verrataan niitä
                 int paivat1 = Integer.parseInt(matka1.split(" ")[4]);
                 int paivat2 = Integer.parseInt(matka2.split(" ")[4]);
                 return Integer.compare(paivat1, paivat2);

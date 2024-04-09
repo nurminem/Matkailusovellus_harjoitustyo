@@ -1,3 +1,6 @@
+/**
+ * Matkailusovellus harjoitustyön moduuli
+ */
 module com.example.matkailusovellus_harjoitustyo {
     requires javafx.controls;
     requires javafx.fxml;

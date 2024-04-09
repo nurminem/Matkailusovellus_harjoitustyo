@@ -1,12 +1,10 @@
 package com.example.matkailusovellus_harjoitustyo;
 
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-
 
 /** Luokka toteuttaa Matkailusovelluksen, jolla on
  * käyttäjä, yksittäinen matkamuisto, päivämäärä, matkamuistot ja tulevat matkat
@@ -36,7 +34,6 @@ public class Matkailusovellus implements Serializable {
      */
     private List<String> tulevatMatkat = new ArrayList<>();
 
-
     /**
      * Alustaja, joka luo matkailusovelluksen käyttäjällä
      * @param kayttaja String kayttaja
@@ -44,7 +41,6 @@ public class Matkailusovellus implements Serializable {
     public Matkailusovellus(String kayttaja){
         this.kayttaja = kayttaja;
     }
-
 
     /**
      * Palauttaa käyttäjän
@@ -65,7 +61,6 @@ public class Matkailusovellus implements Serializable {
         int paivienMaara = Math.toIntExact(ChronoUnit.DAYS.between(kirjautumisenPaiva, matkanPaivamaara));
         return paivienMaara;
     }
-
 
     /**
      * Palauttaa tulevatMatkat listan

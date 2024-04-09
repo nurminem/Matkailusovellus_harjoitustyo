@@ -72,8 +72,6 @@ public class Matkakohteet {
         return nahtavyydet;
     }
 
-
-
 }
 
 
